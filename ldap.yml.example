@@ -1,0 +1,10 @@
+development:
+  method: :simple
+  port: 389
+  host: localhost
+  base: DC=company,DC=com
+  username: NTDOMAIN\ldap
+  password: password
+  filter_attr: objectclass
+  filter_value: person
+
