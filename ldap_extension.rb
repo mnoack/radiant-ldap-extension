@@ -18,5 +18,10 @@ class LdapExtension < Radiant::Extension
 
 
   def deactivate
+    # remove alias_method_chain otherwise stack level too deep
+    # http://blog.jayfields.com/2008/04/alternatives-for-redefining-methods.html
+    User.class_eval do
+      alias_method :authenticated?, :authenticated_without_ldap?
+    end
   end
 end
