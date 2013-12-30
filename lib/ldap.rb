@@ -9,7 +9,9 @@ class Ldap
 
   def self.config
     yaml_file = "#{Rails.root}/config/ldap.yml"
-    YAML::load(File.read(yaml_file))[Rails.env].symbolize_keys
+    config = YAML::load(File.read(yaml_file))[Rails.env]
+    raise Exception, "No environment #{Rails.env} exists in #{yaml_file}" unless config
+    config.symbolize_keys
   end
 
   def self.load_ldap
